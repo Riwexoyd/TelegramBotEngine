@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-
+using Riwexoyd.TelegramBotEngine.Core.Contracts;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;

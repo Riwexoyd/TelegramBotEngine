@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Riwexoyd.TelegramBotEngine.Abstractions\Riwexoyd.TelegramBotEngine.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
