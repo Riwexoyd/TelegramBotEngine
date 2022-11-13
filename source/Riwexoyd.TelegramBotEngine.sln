@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{443A357D-FA1B-4614-90A9-BE353A3141F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riwexoyd.TelegramBotEngine.Core", "API\Riwexoyd.TelegramBotEngine.Core\Riwexoyd.TelegramBotEngine.Core.csproj", "{34F0084C-D456-4609-BD76-98DA836D71FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riwexoyd.TelegramBotEngine.Abstractions", "API\Riwexoyd.TelegramBotEngine.Abstractions\Riwexoyd.TelegramBotEngine.Abstractions.csproj", "{068C448D-4DFF-4E5A-90B2-7B23C0C9E5FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riwexoyd.TelegramBotEngine.Core.DependencyInjection", "API\Riwexoyd.TelegramBotEngine.Core.DependencyInjection\Riwexoyd.TelegramBotEngine.Core.DependencyInjection.csproj", "{39C846A0-9545-4012-AC5D-045011930FAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riwexoyd.TelegramBotEngine.Polling", "API\Riwexoyd.TelegramBotEngine.Polling\Riwexoyd.TelegramBotEngine.Polling.csproj", "{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riwexoyd.TelegramBotEngine.Polling.DependencyInjection", "API\Riwexoyd.TelegramBotEngine.Polling.DependencyInjection\Riwexoyd.TelegramBotEngine.Polling.DependencyInjection.csproj", "{308CF98F-E775-4AA4-83B3-106380CD2569}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34F0084C-D456-4609-BD76-98DA836D71FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34F0084C-D456-4609-BD76-98DA836D71FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34F0084C-D456-4609-BD76-98DA836D71FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34F0084C-D456-4609-BD76-98DA836D71FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068C448D-4DFF-4E5A-90B2-7B23C0C9E5FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068C448D-4DFF-4E5A-90B2-7B23C0C9E5FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068C448D-4DFF-4E5A-90B2-7B23C0C9E5FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068C448D-4DFF-4E5A-90B2-7B23C0C9E5FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C846A0-9545-4012-AC5D-045011930FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C846A0-9545-4012-AC5D-045011930FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C846A0-9545-4012-AC5D-045011930FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C846A0-9545-4012-AC5D-045011930FAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{308CF98F-E775-4AA4-83B3-106380CD2569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308CF98F-E775-4AA4-83B3-106380CD2569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308CF98F-E775-4AA4-83B3-106380CD2569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308CF98F-E775-4AA4-83B3-106380CD2569}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{34F0084C-D456-4609-BD76-98DA836D71FD} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
+		{068C448D-4DFF-4E5A-90B2-7B23C0C9E5FA} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
+		{39C846A0-9545-4012-AC5D-045011930FAC} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
+		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
+		{308CF98F-E775-4AA4-83B3-106380CD2569} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53BF714B-29D3-4D59-AF01-8B53DB7D9B8B}
+	EndGlobalSection
+EndGlobal
