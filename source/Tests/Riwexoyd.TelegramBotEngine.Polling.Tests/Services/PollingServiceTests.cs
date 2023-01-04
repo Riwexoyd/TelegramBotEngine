@@ -31,7 +31,10 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Tests.Services
                 _pollingTimeoutService.Object);
 
             _pollingConfigurationOptions.Setup(options => options.Value)
-                .Returns(new TelegramBotPollingConfiguration());
+                .Returns(new TelegramBotPollingConfiguration
+                {
+                    PollingErrorWaitTimeMilliseconds = 0
+                });
 
             _serviceProviderMock.Setup(serviceProvider => serviceProvider.GetService(typeof(IServiceScopeFactory)))
                 .Returns(_serviceScopeFactory.Object);
