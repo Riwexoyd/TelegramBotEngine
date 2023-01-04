@@ -3,7 +3,7 @@
     /// <summary>
     /// Сервис получения обновлений
     /// </summary>
-    public interface IUpdateReceiverService
+    internal interface IUpdateReceiverService
     {
         /// <summary>
         /// Получить асинхронно обновления

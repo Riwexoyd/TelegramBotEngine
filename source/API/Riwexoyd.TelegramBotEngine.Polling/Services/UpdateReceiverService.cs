@@ -2,28 +2,31 @@ using AutoMapper;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
 using Riwexoyd.TelegramBotEngine.Core.Configurations;
 using Riwexoyd.TelegramBotEngine.Core.Models;
 using Riwexoyd.TelegramBotEngine.Polling.Contracts;
+
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace Riwexoyd.TelegramBotEngine.Core.Services
+namespace Riwexoyd.TelegramBotEngine.Polling.Services
 {
-    public sealed class UpdateReceiverService : IUpdateReceiverService
+    internal sealed class UpdateReceiverService : IUpdateReceiverService
     {
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly IUpdateHandler _updateHandler;
         private readonly ILogger<UpdateReceiverService> _logger;
-        private readonly BotConfiguration _botConfiguration;
+        private readonly TelegramBotConfiguration _botConfiguration;
         private readonly IMapper _mapper;
+        private readonly UpdateType[] _allowedUpdate;
 
         public UpdateReceiverService(ITelegramBotClient telegramBotClient,
             IUpdateHandler updateHandler,
             ILogger<UpdateReceiverService> logger,
-            IOptions<BotConfiguration> botConfiguration,
+            IOptions<TelegramBotConfiguration> botConfiguration,
             IMapper mapper)
         {
             _telegramBotClient = telegramBotClient ?? throw new ArgumentNullException(nameof(telegramBotClient));
@@ -31,16 +34,23 @@ namespace Riwexoyd.TelegramBotEngine.Core.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _botConfiguration = botConfiguration?.Value ?? throw new ArgumentNullException(nameof(botConfiguration));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+
+            if (_botConfiguration.AllowedUpdates != null)
+            {
+                _allowedUpdate = _mapper.Map<TelegramUpdateType[], UpdateType[]>(_botConfiguration.AllowedUpdates);
+            }
+            else
+            {
+                _allowedUpdate = Array.Empty<UpdateType>();
+            }
         }
 
         /// <inheritdoc/>
         public async Task ReceiveAsync(CancellationToken cancellationToken)
         {
-            UpdateType[] allowedUpdate = _mapper.Map<TelegramUpdateType[], UpdateType[]>(_botConfiguration.AllowedUpdates);
-
             ReceiverOptions receiverOptions = new()
             {
-                AllowedUpdates = allowedUpdate,
+                AllowedUpdates = _allowedUpdate,
                 ThrowPendingUpdates = true
             };
 

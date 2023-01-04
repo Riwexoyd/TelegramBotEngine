@@ -1,13 +1,15 @@
 using Microsoft.Extensions.Logging;
+
 using Riwexoyd.TelegramBotEngine.Core.Contracts;
+
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 
-namespace Riwexoyd.TelegramBotEngine.Core.Services
+namespace Riwexoyd.TelegramBotEngine.Polling.Services
 {
-    public sealed class PollingUpdateHandler : IUpdateHandler
+    internal sealed class PollingUpdateHandler : IUpdateHandler
     {
         private readonly ILogger<PollingUpdateHandler> _logger;
         private readonly ITelegramUpdateHandler _telegramUpdateHandler;

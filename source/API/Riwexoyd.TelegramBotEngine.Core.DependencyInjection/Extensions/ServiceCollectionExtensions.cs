@@ -12,23 +12,22 @@ namespace Riwexoyd.TelegramBotEngine.Core.DependencyInjection.Extensions
     {
         public static IServiceCollection AddTelegramBot(this IServiceCollection services, IConfiguration configuration, string botConfigurationSection)
         {
-            // Register Bot configuration
-            services.Configure<BotConfiguration>(
+            ArgumentNullException.ThrowIfNull(services, nameof(services));
+            ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
+
+            if (string.IsNullOrEmpty(botConfigurationSection))
+                throw new ArgumentNullException(nameof(botConfigurationSection));
+
+            services.Configure<TelegramBotConfiguration>(
                 configuration.GetSection(botConfigurationSection));
 
-            // Register named HttpClient to benefits from IHttpClientFactory
-            // and consume it with ITelegramBotClient typed client.
-            // More read:
-            //  https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-5.0#typed-clients
-            //  https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
-            services.AddHttpClient("telegram_bot_client")
-                    .AddTypedClient<ITelegramBotClient>((httpClient, serviceProvider) =>
-                    {
-                        IOptions<BotConfiguration> botOptions = serviceProvider.GetRequiredService<IOptions<BotConfiguration>>();
-                        TelegramBotClientOptions options = new(botOptions.Value.Token);
+            services.AddHttpClient<ITelegramBotClient, TelegramBotClient>((httpClient, serviceProvider) =>
+            {
+                IOptions<TelegramBotConfiguration> botOptions = serviceProvider.GetRequiredService<IOptions<TelegramBotConfiguration>>();
+                TelegramBotClientOptions options = new(botOptions.Value.Token);
 
-                        return new TelegramBotClient(options, httpClient);
-                    });
+                return new TelegramBotClient(options, httpClient);
+            });
 
             return services;
         }

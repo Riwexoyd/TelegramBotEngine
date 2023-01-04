@@ -13,9 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riwexoyd.TelegramBotEngine.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riwexoyd.TelegramBotEngine.Core.DependencyInjection", "API\Riwexoyd.TelegramBotEngine.Core.DependencyInjection\Riwexoyd.TelegramBotEngine.Core.DependencyInjection.csproj", "{39C846A0-9545-4012-AC5D-045011930FAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riwexoyd.TelegramBotEngine.Polling", "API\Riwexoyd.TelegramBotEngine.Polling\Riwexoyd.TelegramBotEngine.Polling.csproj", "{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riwexoyd.TelegramBotEngine.Polling", "API\Riwexoyd.TelegramBotEngine.Polling\Riwexoyd.TelegramBotEngine.Polling.csproj", "{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riwexoyd.TelegramBotEngine.Polling.DependencyInjection", "API\Riwexoyd.TelegramBotEngine.Polling.DependencyInjection\Riwexoyd.TelegramBotEngine.Polling.DependencyInjection.csproj", "{308CF98F-E775-4AA4-83B3-106380CD2569}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riwexoyd.TelegramBotEngine.Polling.Hosting", "API\Riwexoyd.TelegramBotEngine.Polling.Hosting\Riwexoyd.TelegramBotEngine.Polling.Hosting.csproj", "{E0A40FC9-7F17-4B88-A975-24A89FB87B6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riwexoyd.TelegramBotEngine.Polling.Tests", "Tests\Riwexoyd.TelegramBotEngine.Polling.Tests\Riwexoyd.TelegramBotEngine.Polling.Tests.csproj", "{B8ABEB3E-554C-45F0-AF5F-ACB2F87C58F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riwexoyd.TelegramBotEngine.Tests.Utilities", "Tests\Riwexoyd.TelegramBotEngine.Tests.Utilities\Riwexoyd.TelegramBotEngine.Tests.Utilities.csproj", "{12F01717-1AE1-48D6-94B4-272256D5FC9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +43,18 @@ Global
 		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{308CF98F-E775-4AA4-83B3-106380CD2569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{308CF98F-E775-4AA4-83B3-106380CD2569}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{308CF98F-E775-4AA4-83B3-106380CD2569}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{308CF98F-E775-4AA4-83B3-106380CD2569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0A40FC9-7F17-4B88-A975-24A89FB87B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A40FC9-7F17-4B88-A975-24A89FB87B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A40FC9-7F17-4B88-A975-24A89FB87B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A40FC9-7F17-4B88-A975-24A89FB87B6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8ABEB3E-554C-45F0-AF5F-ACB2F87C58F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8ABEB3E-554C-45F0-AF5F-ACB2F87C58F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8ABEB3E-554C-45F0-AF5F-ACB2F87C58F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8ABEB3E-554C-45F0-AF5F-ACB2F87C58F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12F01717-1AE1-48D6-94B4-272256D5FC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12F01717-1AE1-48D6-94B4-272256D5FC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12F01717-1AE1-48D6-94B4-272256D5FC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12F01717-1AE1-48D6-94B4-272256D5FC9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,7 +64,9 @@ Global
 		{068C448D-4DFF-4E5A-90B2-7B23C0C9E5FA} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
 		{39C846A0-9545-4012-AC5D-045011930FAC} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
 		{00AB03E4-CCDD-4A74-BFC2-76B849A35D61} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
-		{308CF98F-E775-4AA4-83B3-106380CD2569} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
+		{E0A40FC9-7F17-4B88-A975-24A89FB87B6A} = {B7A9DF9E-E661-4E20-AC1C-17237FDEDC0F}
+		{B8ABEB3E-554C-45F0-AF5F-ACB2F87C58F1} = {443A357D-FA1B-4614-90A9-BE353A3141F1}
+		{12F01717-1AE1-48D6-94B4-272256D5FC9E} = {443A357D-FA1B-4614-90A9-BE353A3141F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53BF714B-29D3-4D59-AF01-8B53DB7D9B8B}

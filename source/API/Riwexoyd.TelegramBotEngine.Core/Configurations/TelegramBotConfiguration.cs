@@ -2,10 +2,10 @@
 
 namespace Riwexoyd.TelegramBotEngine.Core.Configurations
 {
-    public sealed class BotConfiguration
+    public sealed class TelegramBotConfiguration
     {
         public string Token { get; set; } = string.Empty;
 
-        public TelegramUpdateType[] AllowedUpdates { get; set; } = Array.Empty<TelegramUpdateType>();
+        public TelegramUpdateType[]? AllowedUpdates { get; set; } = Array.Empty<TelegramUpdateType>();
     }
 }
