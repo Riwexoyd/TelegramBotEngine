@@ -13,7 +13,7 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Extensions
 
             services.AddScoped<IUpdateReceiverService, UpdateReceiverService>();
             services.AddScoped<IUpdateHandler, PollingUpdateHandler>();
-            services.AddScoped<IUpdateCounter, UpdateCounter>();
+            services.AddSingleton<IUpdateCounterService, UpdateCounterService>();
             services.AddSingleton<IPollingTimeoutService, PollingTimeoutService>();
             services.AddSingleton<IPollingService, PollingService>();
 

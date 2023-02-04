@@ -22,13 +22,15 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Tests.Services
         private readonly Mock<IPollingTimeoutService> _pollingTimeoutService = new();
         private readonly Mock<IUpdateReceiverService> _updateReceiverService = new();
         private readonly Mock<IServiceScopeFactory> _serviceScopeFactory = new();
+        private readonly Mock<IUpdateCounterService> _updateCounterService = new();
 
         public PollingServiceTests()
         {
             _pollingService = new(_serviceProviderMock.Object,
                 _logger.Object,
                 _pollingConfigurationOptions.Object,
-                _pollingTimeoutService.Object);
+                _pollingTimeoutService.Object,
+                _updateCounterService.Object);
 
             _pollingConfigurationOptions.Setup(options => options.Value)
                 .Returns(new TelegramBotPollingConfiguration
@@ -71,6 +73,45 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Tests.Services
 
             // Assert
             _logger.VerifyLog(LogLevel.Error, Times.Once());
+        }
+
+        [Fact]
+        public async Task PollAsync_MustReceiveUpdatesAndWaitTimeout()
+        {
+            // Arrange
+            CancellationTokenSource cancellationTokenSource = new();
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
+            _updateReceiverService.Setup(service => service.ReceiveAsync(cancellationToken))
+                .Returns(Task.CompletedTask);
+
+            _pollingTimeoutService.Setup(service => service.WaitAsync(cancellationToken))
+                .Callback(cancellationTokenSource.Cancel);
+
+            // Act
+            await _pollingService.PollAsync(cancellationTokenSource.Token);
+
+            // Assert
+            _updateReceiverService.Verify(service => service.ReceiveAsync(cancellationToken), Times.Once);
+            _pollingTimeoutService.Verify(service => service.WaitAsync(cancellationToken), Times.Once);
+        }
+
+        [Fact]
+        public async Task PollAsync_MustResetUpdateCounter()
+        {
+            // Arrange
+            CancellationTokenSource cancellationTokenSource = new();
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
+            _updateReceiverService.Setup(service => service.ReceiveAsync(cancellationToken))
+                .Returns(Task.CompletedTask);
+
+            _pollingTimeoutService.Setup(service => service.WaitAsync(cancellationToken))
+                .Callback(cancellationTokenSource.Cancel);
+
+            // Act
+            await _pollingService.PollAsync(cancellationTokenSource.Token);
+
+            // Assert
+            _updateCounterService.Verify(service => service.Reset(), Times.Once);
         }
     }
 }

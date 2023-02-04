@@ -13,16 +13,19 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Services
         private readonly ILogger<PollingService> _logger;
         private readonly IOptions<TelegramBotPollingConfiguration> _pollingConfigurationOptions;
         private readonly IPollingTimeoutService _pollingTimeoutService;
+        private readonly IUpdateCounterService _updateCounterService;
 
         public PollingService(IServiceProvider serviceProvider,
             ILogger<PollingService> logger,
             IOptions<TelegramBotPollingConfiguration> pollingConfigurationOptions,
-            IPollingTimeoutService pollingTimeoutService)
+            IPollingTimeoutService pollingTimeoutService,
+            IUpdateCounterService updateCounterService)
         {
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _pollingConfigurationOptions = pollingConfigurationOptions ?? throw new ArgumentNullException(nameof(pollingConfigurationOptions));
             _pollingTimeoutService = pollingTimeoutService ?? throw new ArgumentNullException(nameof(pollingTimeoutService));
+            _updateCounterService = updateCounterService ?? throw new ArgumentNullException(nameof(updateCounterService));
         }
 
         public async Task PollAsync(CancellationToken cancellationToken)
@@ -34,6 +37,8 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Services
                     using var scope = _serviceProvider.CreateScope();
                     var serviceProvider = scope.ServiceProvider;
                     IUpdateReceiverService receiver = serviceProvider.GetRequiredService<IUpdateReceiverService>();
+
+                    _updateCounterService.Reset();
 
                     await receiver.ReceiveAsync(cancellationToken)
                         .ConfigureAwait(false);

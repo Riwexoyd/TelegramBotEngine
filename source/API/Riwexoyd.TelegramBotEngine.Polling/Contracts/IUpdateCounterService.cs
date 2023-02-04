@@ -1,9 +1,11 @@
 ﻿namespace Riwexoyd.TelegramBotEngine.Polling.Contracts
 {
-    internal interface IUpdateCounter
+    internal interface IUpdateCounterService
     {
         bool HasUpdates { get; }
 
         void ReceiveUpdate();
+
+        void Reset();
     }
 }

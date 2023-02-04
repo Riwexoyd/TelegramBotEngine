@@ -19,7 +19,6 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Services
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly IUpdateHandler _updateHandler;
         private readonly ILogger<UpdateReceiverService> _logger;
-        private readonly TelegramBotConfiguration _botConfiguration;
         private readonly IMapper _mapper;
         private readonly UpdateType[] _allowedUpdate;
 
@@ -32,12 +31,12 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Services
             _telegramBotClient = telegramBotClient ?? throw new ArgumentNullException(nameof(telegramBotClient));
             _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _botConfiguration = botConfiguration?.Value ?? throw new ArgumentNullException(nameof(botConfiguration));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
-            if (_botConfiguration.AllowedUpdates != null)
+            TelegramBotConfiguration telegramBotConfiguration = botConfiguration?.Value ?? throw new ArgumentNullException(nameof(botConfiguration));
+            if (telegramBotConfiguration.AllowedUpdates != null)
             {
-                _allowedUpdate = _mapper.Map<TelegramUpdateType[], UpdateType[]>(_botConfiguration.AllowedUpdates);
+                _allowedUpdate = _mapper.Map<TelegramUpdateType[], UpdateType[]>(telegramBotConfiguration.AllowedUpdates);
             }
             else
             {
@@ -54,13 +53,15 @@ namespace Riwexoyd.TelegramBotEngine.Polling.Services
                 ThrowPendingUpdates = true
             };
 
-            User me = await _telegramBotClient.GetMeAsync(cancellationToken);
+            User me = await _telegramBotClient.GetMeAsync(cancellationToken)
+                .ConfigureAwait(false);
             _logger.LogInformation("Start receiving updates for {BotName}", me.Username);
 
             await _telegramBotClient.ReceiveAsync(
                 updateHandler: _updateHandler,
                 receiverOptions: receiverOptions,
-                cancellationToken: cancellationToken);
+                cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
         }
     }
 }
